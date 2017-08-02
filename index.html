@@ -10,7 +10,49 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script type="text/javascript" src="assets/javascript/caffeine.js"></script>
 </head>
 <body>
+    <div class="row">
+        <div class="small-12 columns">
 
+            <p>
+                <label for="text" class="formLabel">City or Zip</label><br>
+                <input type="text" class="inputField" id="cityZipInput">
+            </p>
+        </div>
+    </div><!-- end row -->
+
+    <div class="row">
+        <div class="small-12 columns">
+            <p>
+                <label>Radius (miles)</label>
+                <select class = "radius">
+                   <option value = "1">1</option>
+                   <option value = "3">3</option>
+                   <option value = "5">5</option>
+                </select>
+            </p>
+        </div>
+    </div><!-- end row -->
+
+    <div class="row results">
+        <div class="small-12 columns">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th> 
+                </tr>
+                <tr>
+                	<td>sample data</td>
+                	<td>sample data</td>
+                	<td>sample data</td>
+                </tr>
+            </table>
+        </div> <!-- end row -->
+
+    <div class="row map">
+        <div class="small-12 columns">
+        </div>
+    </div> <!-- end row -->
 
 </body>
 </html>
