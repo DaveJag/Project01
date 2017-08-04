@@ -1,1 +1,16 @@
 /* Project01 CSS File */
+
+body {
+	font-size: 16pt;
+	font-family: "arial", "helvetica", "sans serif";
+}
+
+.inputField {
+	margin: 12px;
+}
+
+.tData {
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 10px;
+}

@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>Caffeine Cartographer</title>
 	<!-- load CSS files before script files -->
       <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> 
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <!-- load jQuery before other scripts-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script type="text/javascript" src="assets/javascript/caffeine.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="assets/javascript/caffeine.js"></script>
+      <script src="https://code.jquery.com/jquery.js"</script>
+      <script type="text/javascript" src="assets/javascript/main.js"></script>
 </head>
 <body>
+  <div id="container">
+  
+  <h1 id="test"> </h1>
+
+    <form class="formClass">
     <div class="row">
         <div class="small-12 columns">
 
             <p>
-                <label for="text" class="formLabel">City or Zip</label><br>
+                <label for="text" class="inputField">City or Zip</label><br>
                 <input type="text" class="inputField" id="cityZipInput">
             </p>
         </div>
@@ -31,20 +40,27 @@
                 </select>
             </p>
         </div>
+
+    <div class="row"> 
+        <div class="small-12 columns">
+            <p>
+                <input type="button" value="Search" class="inputField" id="searchButton">
+            </p>
     </div><!-- end row -->
+    </form> 
 
     <div class="row results">
         <div class="small-12 columns">
-            <table>
+            <table class="tableClass">
                 <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Phone</th> 
+                    <th id="theading">Name</th>
+                    <th id="theading">Address</th>
+                    <th id="theading">Phone</th> 
                 </tr>
                 <tr>
-                	<td>sample data</td>
-                	<td>sample data</td>
-                	<td>sample data</td>
+                	<td id="tdata">sample data</td>
+                	<td id="tdata">sample data</td>
+                	<td id="tdata">sample data</td>
                 </tr>
             </table>
         </div> <!-- end row -->
@@ -53,6 +69,32 @@
         <div class="small-12 columns">
         </div>
     </div> <!-- end row -->
+  </div> <!-- end container -->
+
+<script type="text/javascript">
+    $("#searchButton").on("click", function(){
+    console.log("button clicked");
+    var searchString = $("#cityZipInput").val().trim();
+    console.log("searchString is " + searchString);
+
+    //Test to see if input is a city name or a zip code.
+    var firstChar = searchString.charAt(0); //gets first character of search string
+    result = testForChar(firstChar);
+    if (result === true) {
+        console.log("Input is a city name.")
+    }  else {
+        console.log("Input is a zip code.")
+
+    } 
+
+function testForChar(char){  //Compare characters using the ASCII table.
+  if (((char > '@')&&(char < '[')) || ((char > '`')&& (char<'{')))
+  return true;
+    // It is an english alphabetical character(Uppercase for the first lot,                      //     // lowercase thethe second lot. 
+}
+
+});
+</script>
 
 </body>
 </html>
