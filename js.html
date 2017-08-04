@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<div>
+    <button id="makeCall">Make Call</button>
+</div>
+<div class="api-results"></div>
+<div id="googleMap" style="width:100%;height:400px;"></div>
+
+<body>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script>
+    var mapsAPIkey = "AIzaSyBj9Al5NrRwRUiUF6pZfZyGMde4WK0ehBo";
+    var yelpAPIkey = "sdLIuUoLXJ1foqbrvm9DJYuEmJQ28kBPkEjmp5bx4wBjztmgI-rl-IM_6bncvdCqLFnBF-CajWNwW8dpCgDtI7tTUC_Wuyvr-g6i1574oHE27GjGoiW_Z_kZ-BCBWXYx";
+
+    $(function() {
+    // Get my Facebook API key from Local Storage
+    var token = localStorage.getItem(yelpToken);
+
+    $("#makeCall").click(function() {
+        $.ajax({
+            url: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=boston",
+            success: function(data, status) {
+                $(".api-results").append("<p>Total number of results from API: " + data.total + ".</p><p>Check your console.</p>");
+                return console.log("The returned data", data);
+            },
+            beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        });
+    });
+});
+
+
+
+
+    function myMap() {
+        var mapProp = {
+        	//user input here, convert to google.maps.LatLng(Latitude, Longitude)
+            center: new google.maps.LatLng(51.508742, -0.120850),
+            zoom: 5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj9Al5NrRwRUiUF6pZfZyGMde4WK0ehBo&callback=myMap"></script>
+    </script>
+</body>
+
+</html>
