@@ -4,14 +4,15 @@
 
 	<title>Caffeine Cartographer</title>
 	<!-- load CSS files before script files -->
-      <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> 
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+     
     <!-- load jQuery before other scripts-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
       <script type="text/javascript" src="assets/javascript/caffeine.js"></script>
-      <script src="https://code.jquery.com/jquery.js"</script>
       <script type="text/javascript" src="assets/javascript/main.js"></script>
+    <!--  <script type="text/javascript" src="assets/javascript/yelp.js"></script> -->
+
 </head>
 <body>
   <div id="container">
@@ -21,22 +22,22 @@
     <form class="formClass">
     <div class="row">
         <div class="small-12 columns">
-
             <p>
                 <label for="text" class="inputField">City or Zip</label><br>
                 <input type="text" class="inputField" id="cityZipInput">
+                <p><span id = "statusMsg">Enter a valid city name or zip code</span></p>
             </p>
         </div>
-    </div><!-- end row -->
+    </div><!-- end row --> 
 
     <div class="row">
         <div class="small-12 columns">
-            <p>
+            <p> 
                 <label>Radius (miles)</label>
-                <select class = "radius">
-                   <option value = "1">1</option>
-                   <option value = "3">3</option>
-                   <option value = "5">5</option>
+                <select id="radiusSelection">
+                   <option value="1">1</option>
+                   <option value="3">3</option>
+                   <option value="5">5</option>
                 </select>
             </p>
         </div>
@@ -66,34 +67,71 @@
         </div> <!-- end row -->
 
     <div class="row map">
-        <div class="small-12 columns">
-        </div>
+        <div class="small-12 columns"></div>
     </div> <!-- end row -->
   </div> <!-- end container -->
 
+
+
 <script type="text/javascript">
+
     $("#searchButton").on("click", function(){
     console.log("button clicked");
     var searchString = $("#cityZipInput").val().trim();
     console.log("searchString is " + searchString);
 
+    //Get the radius value and convert to meters
+    var e = document.getElementById("radiusSelection");
+    var radMiles = e.options[e.selectedIndex].value;
+    var radMeters = radMiles * 1609.34;
+    radMeters = parseFloat(radMeters.toFixed(2));
+    //var strUser = e.options[e.selectedIndex].text;
+    console.log("selected radius is " + radMeters + " meters");
     //Test to see if input is a city name or a zip code.
     var firstChar = searchString.charAt(0); //gets first character of search string
     result = testForChar(firstChar);
-    if (result === true) {
-        console.log("Input is a city name.")
+    if (result === "city") {
+        console.log("Input is a city name.");
+        $("#statusMsg").text("You entered a city Name");
+    } else if (result === "zip") {
+        console.log("Input is a zip code.");
+        $("#statusMsg").text("You entered a zip code.");
+
+      } else { //invalid character 
+          console.log ("invalid character.");
+          $("#statusMsg").text("Enter a city name or zip code.");
+        }
+
+    var apiKey = "AIzaSyDYrSAKgq2_eSpoA_BRomMErBFF2nZL4JA"; <!-- google places api key -->
+    var queryURL = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + searchString + "&radius=" + radMeters + "&strictbounds&key=" + apiKey;
+
+
+    // Create an AJAX call for the specific button being clicked
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).done(function(response) {
+           for (var i=0; i<3; i++) {
+           console.log("response.predictions = " + response.predictions[0].description);
+       } // end for
+        }) // end ajax call
+    }); // end on click
+
+function testForChar(char) {  //Returns "city", "zip", or "Invalid".
+  if (((char > '@') && (char < '[')) || ((char > '`') && (char<'{'))) { 
+    return "city"; // It is an english alphabetical character  
+  
+  } else if ((char > '/' ) && (char < ':')) {
+      return "zip"; //character is a number 0-9
+
     }  else {
-        console.log("Input is a zip code.")
+         //invalid character
+        return "invalid";
+    }
 
-    } 
+}; //end function
 
-function testForChar(char){  //Compare characters using the ASCII table.
-  if (((char > '@')&&(char < '[')) || ((char > '`')&& (char<'{')))
-  return true;
-    // It is an english alphabetical character(Uppercase for the first lot,                      //     // lowercase thethe second lot. 
-}
 
-});
 </script>
 
 </body>
