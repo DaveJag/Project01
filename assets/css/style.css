@@ -1,1 +1,43 @@
 /* Project01 CSS File */
+body {
+	 background-image: url("../images/CaffeineBackground.png");
+	 background-repeat: no-repeat; 
+     background-size: cover;
+	}
+
+.search {
+	margin-top: 550px;
+}
+
+input {
+	width: 30%;
+}
+
+.location {
+	display: inline;
+}
+
+.formLabel {
+	font-size: 24px;
+	margin-left: 105px;
+	font-weight: bold;
+	color: #3e170c;
+}
+
+.radius {
+	font-size: 24px;
+	font-weight: bold;
+	color: #3e170c;
+}
+
+button {
+	font-size: 24px;
+	font-weight: bold;
+	color: #3e170c;
+	border-radius: 8px;
+	background-color: #fff;
+	margin-top: 15px;
+	margin-left: 120px;
+}
+
+ 
