@@ -1,43 +1,126 @@
 /* Project01 CSS File */
+
 body {
-	 background-image: url("../images/CaffeineBackground.png");
-	 background-repeat: no-repeat; 
-     background-size: cover;
-	}
+    background-image: url("../images/CaffeineBackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.heading,
+.headingText {
+    color: #fff;
+    text-align: center;
+}
+
+.heading {
+    margin-top: 375px;
+    font-family: 'Special Elite', cursive;
+    font-size: 50px;
+}
+
+.headingText {
+    color: #3e170c;
+    font-weight: bold;
+}
 
 .search {
-	margin-top: 550px;
+    margin-top: 100px;
 }
 
 input {
-	width: 30%;
+    width: 30%;
 }
 
 .location {
-	display: inline;
+    display: inline;
 }
 
 .formLabel {
-	font-size: 24px;
-	margin-left: 105px;
-	font-weight: bold;
-	color: #3e170c;
+    font-size: 24px;
+    margin-left: 105px;
+    font-weight: bold;
+    color: #3e170c;
 }
 
 .radius {
-	font-size: 24px;
-	font-weight: bold;
-	color: #3e170c;
+    font-size: 24px;
+    font-weight: bold;
+    color: #3e170c;
 }
 
 button {
-	font-size: 24px;
-	font-weight: bold;
-	color: #3e170c;
-	border-radius: 8px;
-	background-color: #fff;
-	margin-top: 15px;
-	margin-left: 120px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #3e170c;
+    border-radius: 8px;
+    border: 1px solid #3e170c;
+    background-color: #fff;
+    margin-left: 15px;
 }
 
- 
+.results {
+    border: 1px solid #fff;
+    height: 300px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.map {
+	border: 1px solid #fff;
+    height: 300px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    box-sizing: border-box;
+    margin-top: 400px;
+    height: 500px;
+    margin-bottom: 75px;
+}
+
+table {
+    margin: 0 auto;
+    background-color: #fff;
+    color: #3e170c;
+}
+
+td, th {
+	width: 320px;
+	text-align: center;
+}
+
+hr {
+    border-color: #3e170c;
+}
+
+footer {
+    text-align: center;
+    font-size: 14px;
+    color: #3e170c;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/*Media Query - Tablets*/
+@media only screen and (max-width: 768px) {
+  .heading {
+  	margin-top: 200px; 
+  }
+  .results, .map {
+
+  }
+
+  .search {
+  	display: inline-block;
+  }
+}
+
+/*Media Query - Phones*/
+@media only screen and (max-width: 576px) {
+
+}

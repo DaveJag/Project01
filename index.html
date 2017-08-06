@@ -1,60 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Caffeine Cartographer</title>
-	      
-      
+    <title>Caffeine Cartographer</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.1/css/foundation.min.css" crossorigin="anonymous" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-    </head>
 <body>
-    <div class="row search">
-        <div class="small-8 columns location">
-
-            <label for="text" class="formLabel">City or Zip</label>
-            <input type="text" class="inputField" id="cityZipInput">
-
-        </div>
-        <div class="small-3 columns small-offset-1 columns location">
-            <p>
+    <div id="title">
+        <h1 class="heading">Caffeine Cartographer</h1>
+        <h3 class="headingText">Looking for a caffeine fix?<br />Enter your city/state or zip code to find your next great cup of coffee or tea!</h3>
+    </div>
+    <div id="container">
+        <div class="row search">
+            <div class="col-sm-6 location">
+                <label class="formLabel">City/State or Zip</label>
+                <input type="text" name="city">
+            </div>
+            <div class="col-sm-3 radius">
                 <label>Radius (miles)</label>
-                <select class = "radius">
-                   <option value = "1">1</option>
-                   <option value = "3">3</option>
-                   <option value = "5">5</option>
+                <select class="radius">
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
                 </select>
-            </p>
-        </div>
-    </div><!-- end row -->
-    <div class="row">
-        <div class="large-8 columns location"></div>
-        <div class="large-4 columns">
-             <button type="submit" class="search">Search</button>
-        </div>
-    </div><!-- end row -->
-
-    <div class="row results">
-        <div class="large-12 columns">
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Phone</th> 
-                </tr>
-                <tr>
-                	<td>sample data</td>
-                	<td>sample data</td>
-                	<td>sample data</td>
-                </tr>
-            </table>
-        </div> <!-- end row -->
-
-    <div class="row map">
-        <div class="large-12 columns">
-        </div>
-    </div> <!-- end row -->
-
+            </div>
+            <div>
+                <button type="submit" class="submit">Search</button>
+            </div>
+            <div class="row results">
+                <div class="col-md-12">
+                    <table class="table table-responsive table-hover">
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                        </tr>
+                        <tr>
+                            <td>sample data</td>
+                            <td>sample data</td>
+                            <td>sample data</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- end row -->
+                <div class="row map">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+                <hr />
+                <!-- end row -->
+                <footer>Built for Project#1 UNH Coding Camp &copy; <span id="year"></span></footer>
+            </div>
 </body>
+
+
+<script>//Dynamic date function
+var today = new Date();
+document.getElementById('year').textContent = today.getFullYear();
+</script>
+
 </html>
+
