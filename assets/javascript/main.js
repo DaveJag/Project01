@@ -1,7 +1,20 @@
 $(document).ready(function() {
 
+    //Get the HTML input element for the autocomplete search box.
+    var input=document.getElementById('pac-input');
+    var options = {
+        /*types: ['establishment'], */
+        componentRestrictions: {country: ['us', 'ca']} //restricts search to United States & Canada
+    };
+
+    //Create the autocomplete object.
+    var autocomplete=new google.maps.places.Autocomplete(input,options);
+
     $("#searchButton").on("click", function(){
     console.log("button clicked");
+
+
+   //This is the original input field below.
     var searchString = $("#cityZipInput").val().trim();
     console.log("searchString is " + searchString);
 
@@ -36,11 +49,18 @@ $(document).ready(function() {
           url: queryURL,
           method: "GET"
         }).done(function(response) {
-           for (var i=0; i<3; i++) {
-           console.log("response.predictions = " + response.predictions[0].description);
+           for (var i=0; i<response.predictions.length; i++) {
+           console.log("response.predictions = " + response.predictions[i].description);
        } // end for
         }) // end ajax call
     }); // end on click
+
+function initialize() {
+  //Create the autocomplete object.
+  autocomplete = new google.maps.places.Autocomplete(
+        /** @type {HTMLInputElement} */ (document.getElementById('autocomplete')),
+      { types: ['geocode']});
+}
 
 function testForChar(char) {  //Returns "city", "zip", or "Invalid".
   if (((char > '@') && (char < '[')) || ((char > '`') && (char<'{'))) { 

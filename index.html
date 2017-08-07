@@ -10,6 +10,7 @@
      
     <!-- load jQuery before other scripts-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYrSAKgq2_eSpoA_BRomMErBFF2nZL4JA&libraries=places" </script>
       <script type="text/javascript" src="assets/javascript/caffeine.js"></script>
       <script type="text/javascript" src="assets/javascript/main.js"></script>
     <!--  <script type="text/javascript" src="assets/javascript/yelp.js"></script> -->
@@ -18,16 +19,17 @@
 <body>
   <div id="container">
   
-  <h1 id="test"> </h1>
-
     <form class="formClass">
     <div class="row">
         <div class="small-12 columns">
             <p>
-                <label for="text" class="inputField">City or Zip</label><br>
-                <input type="text" class="inputField" id="cityZipInput">
-                <p><span id = "statusMsg">Enter a valid city name or zip code</span></p>
+            <input id="pac-input" class="controls" type="text" placeholder="Enter location (City, Street, or Zip)">
             </p>
+<!-- This input field has been replaced by the automcomplete field above. May not need this.
+            <p><label for="text" class="inputField">City or Zip</label></p>
+            <p><input type="text" class="inputField" id="cityZipInput"></p>
+                <p><span id = "statusMsg">Enter a valid city name or zip code</span></p>
+            </p>  -->
         </div>
     </div><!-- end row --> 
 
@@ -67,7 +69,7 @@
             </table>
         </div> <!-- end row -->
 
-    <div class="row map">
+    <div class="row map-canvas">  <!-- map-canvas required by google maps -->
         <div class="small-12 columns"></div>
     </div> <!-- end row -->
   </div> <!-- end container -->
