@@ -6,7 +6,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" href="assets/styles.less" />
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -17,11 +19,12 @@
     </div>
     <div id="container">
         <div class="row search">
-            <div class="col-sm-6 location">
+            <div class="col-md-1"></div>
+            <div class="col-sm-8 col-md-6 col-lg-7 location">
                 <label class="formLabel">City/State or Zip</label>
                 <input type="text" name="city">
             </div>
-            <div class="col-sm-3 radius">
+            <div class="col-sm-2 col-md-3 col-lg-3 radius">
                 <label>Radius (miles)</label>
                 <select class="radius">
                     <option value="1">1</option>
@@ -29,9 +32,11 @@
                     <option value="5">5</option>
                 </select>
             </div>
-            <div>
+            <div class="col-sm-2 col-md-1 col-lg-2">
                 <button type="submit" class="submit">Search</button>
             </div>
+            <div class="col-md-1"></div>
+        </div>
             <div class="row results">
                 <div class="col-md-12">
                     <table class="table table-responsive table-hover">
@@ -56,6 +61,7 @@
                 <!-- end row -->
                 <footer>Built for Project#1 UNH Coding Camp &copy; <span id="year"></span></footer>
             </div>
+        </div>
 </body>
 
 

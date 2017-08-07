@@ -1,6 +1,7 @@
 /* Project01 CSS File */
 
 body {
+    font-family: "Arial", sans-serif;
     background-image: url("../images/CaffeineBackground.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,7 +19,7 @@ body {
 }
 
 .heading {
-    margin-top: 375px;
+    margin-top: 380px;
     font-family: 'Special Elite', cursive;
     font-size: 50px;
 }
@@ -29,11 +30,11 @@ body {
 }
 
 .search {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 input {
-    width: 30%;
+    width: 50%;
 }
 
 .location {
@@ -42,7 +43,6 @@ input {
 
 .formLabel {
     font-size: 24px;
-    margin-left: 105px;
     font-weight: bold;
     color: #3e170c;
 }
@@ -60,7 +60,16 @@ button {
     border-radius: 8px;
     border: 1px solid #3e170c;
     background-color: #fff;
-    margin-left: 15px;
+}
+
+button:hover {
+    background-color: #3e170c;
+    color: #fff;
+}
+
+select {
+    font-family: inherit;
+    color: inherit;
 }
 
 .results {
@@ -70,17 +79,19 @@ button {
     margin-top: 40px;
     box-sizing: border-box;
     background-color: #fff;
+    float: left;
+    width: 100%;
 }
 
 .map {
-	border: 1px solid #fff;
+    border: 1px solid #fff;
     height: 300px;
-    margin-bottom: 20px;
-    margin-top: 40px;
     box-sizing: border-box;
-    margin-top: 400px;
+    margin-top: 350px;
     height: 500px;
     margin-bottom: 75px;
+    max-width: 960px;
+    margin-left: 2px;
 }
 
 table {
@@ -89,13 +100,14 @@ table {
     color: #3e170c;
 }
 
-td, th {
-	width: 320px;
-	text-align: center;
+td,
+th {
+    width: 320px;
+    text-align: center;
 }
 
 hr {
-    border-color: #3e170c;
+    border: 1px solid #3e170c;
 }
 
 footer {
@@ -106,21 +118,68 @@ footer {
     margin-bottom: 20px;
 }
 
+
 /*Media Query - Tablets*/
+
 @media only screen and (max-width: 768px) {
-  .heading {
-  	margin-top: 200px; 
-  }
-  .results, .map {
+    #container {
+        height: 1050px;
+    }
 
-  }
+    .heading {
+        margin-top: 250px;
+    }
 
-  .search {
-  	display: inline-block;
-  }
+    .search {
+        margin-top: 30px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    input {
+        width: 20%;
+    }
+    .results {
+        width: 80%;
+        margin-left: 75px;
+        margin-top: 20px;
+    }
+
+    .map {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 250px;
+    }
+    .formLabel {
+        font-size: 20px;
+    }
+
+    .radius {
+        font-size: 20px;
+    }
+    button {
+        font-size: 20px;
+    }
 }
 
-/*Media Query - Phones*/
-@media only screen and (max-width: 576px) {
 
+/*Media Query - Phones*/
+
+@media only screen and (max-width: 576px) {
+    #container {
+        height: 1050px;
+    }
+
+    .headingText {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .search {
+        text-align: center;
+    }
+
+    .results {
+        margin-left: 60px;
+    }
 }
