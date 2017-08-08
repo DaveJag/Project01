@@ -24,13 +24,9 @@
         <div class="col-md-1 col-lg-1"></div>
         <div class="col-sm-8 col-md-6 col-lg-5 location">
             <p>
-                <input id="pac-input" class="controls" type="text" placeholder="Enter location (City, Street, or Zip)">
+                <label for="text" class="inputField">City/State or Zip</label>
+                <input id="pac-input" class="controls inputField" type="text" placeholder="Enter location (City, Street, or Zip)">
             </p>
-<!-- This input field has been replaced by the automcomplete field above. May not need this.
-            <p><label for="text" class="inputField">City or Zip</label></p>
-            <p><input type="text" class="inputField" id="cityZipInput"></p>
-                <p><span id = "statusMsg">Enter a valid city name or zip code</span></p>
-            </p>  -->
         </div>
         <div class="col-sm-2 col-md-3 col-lg-3 radius">
             <p> 
@@ -52,11 +48,11 @@
     </form> 
     <div class="row results">
         <div class="col-md-12">>
-            <table class="table table-responsive table-hover">
+            <table class="table table-responsive table-hover" id="resultsTableId">
                 <tr>
-                    <th class="theading">Name</th>
-                    <th class="theading">Address</th>
-                    <th class="theading">Phone</th> 
+                    <th class="theading" id="nameColId">Name</th>
+                    <th class="theading" id="addressColId">Address</th>
+                    <th class="theading" id="phoneColId">Phone</th> 
                 </tr>
                 <tr>
                     <td class="tdata">sample data</td>
@@ -75,8 +71,5 @@
     </div> <!-- end row results -->
   </div> <!-- end container -->
 </body>
-<script>//Dynamic date function
-  var today = new Date();
-  document.getElementById('year').textContent = today.getFullYear();
-</script>
+
 </html>
