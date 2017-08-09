@@ -24,8 +24,7 @@
         <div class="col-md-1 col-lg-1"></div>
         <div class="col-sm-8 col-md-6 col-lg-5 location">
             <p>
-                <label for="text" class="inputField">City/State or Zip</label>
-                <input id="pac-input" class="controls inputField" type="text" placeholder="Enter location (City, Street, or Zip)">
+                <input id="pac-input" class="controls" type="text" placeholder="Enter location (City, Street, or Zip)">
             </p>
         </div>
         <div class="col-sm-2 col-md-3 col-lg-3 radius">
@@ -40,7 +39,7 @@
         </div>
         <div class="col-sm-2 col-md-1 col-lg-2">
             <p>
-                <input type="button" value="Search" class="inputField submit" id="searchButton">
+                <button type="button" value="Search" class="inputField submit" id="searchButton">Search</button>
             </p>
         </div>
         <div class="col-md-1 col-lg-1"></div>
@@ -48,7 +47,7 @@
     </form> 
     <div class="row results">
         <div class="col-md-12">>
-            <table class="table table-responsive table-hover" id="resultsTableId">
+            <table class="table table-responsive table-hover">
                 <tr>
                     <th class="theading" id="nameColId">Name</th>
                     <th class="theading" id="addressColId">Address</th>
@@ -71,5 +70,9 @@
     </div> <!-- end row results -->
   </div> <!-- end container -->
 </body>
-
+<script>//Dynamic date function
+  var today = new Date();
+  document.getElementById('year').textContent = today.getFullYear();
+</script>
 </html>
+
