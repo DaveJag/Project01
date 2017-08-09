@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Caffeine Cartographer</title>
+    <!-- load CSS files before script files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+     
+    <!-- load jQuery before other scripts-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYrSAKgq2_eSpoA_BRomMErBFF2nZL4JA&libraries=places" </script>
+      <script type="text/javascript" src="assets/javascript/ApiCodeYelp.js"></script>
+      <script type="text/javascript" src="assets/javascript/main.js"></script>
+</head>
+<body>
+    <div id="title">
+        <h1 class="heading">Caffeine Cartographer</h1>
+        <h3 class="headingText">Looking for a caffeine fix?<br />Enter your city/state or zip code to find your next great cup of coffee or tea!</h3>
+    </div>
+  <div id="container">
+    <form class="formClass">
+    <div class="row search">
+        <div class="col-md-1 col-lg-1"></div>
+        <div class="col-sm-8 col-md-6 col-lg-5 location">
+            <p>
+                <label for="text" class="formLabel inputField">City/State or Zip</label>
+                <input id="pac-input" class="controls" type="text" placeholder="Enter City, Street, or Zip">
+            </p>
+        </div>
+        <div class="col-sm-2 col-md-3 col-lg-3 radius">
+            <p> 
+                <label>Radius (miles)</label>
+                <select id="radiusSelection" class="radius">
+                   <option value="1">1</option>
+                   <option value="3">3</option>
+                   <option value="5">5</option>
+                </select>
+            </p>
+        </div>
+        <div class="col-sm-2 col-md-1 col-lg-2">
+            <p>
+                <button type="button" value="Search" class="inputField submit" id="searchButton">Search</button>
+            </p>
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+    </div><!-- end row -->
+    </form> 
+    <div class="row results">
+        <div class="col-md-12">>
+            <table class="table table-responsive table-hover">
+                <tr>
+                    <th class="theading" id="nameColId">Name</th>
+                    <th class="theading" id="addressColId">Address</th>
+                    <th class="theading" id="phoneColId">Phone</th> 
+                </tr>
+                <tr>
+                    <td class="tdata">sample data</td>
+                    <td class="tdata">sample data</td>
+                    <td class="tdata">sample data</td>
+                </tr>
+            </table>
+        </div> <!-- end row -->
+        
+        <div class="row map"> 
+            <div class="col-md-12"> </div>
+        </div> 
+        <hr />
+        <!-- end row -->
+        <footer>Built for Project#1 UNH Coding Camp &copy; <span id="year"></span></footer>
+    </div> <!-- end row results -->
+  </div> <!-- end container -->
+</body>
+<script>//Dynamic date function
+  var today = new Date();
+  document.getElementById('year').textContent = today.getFullYear();
+</script>
+</html>
+
