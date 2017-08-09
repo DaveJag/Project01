@@ -123,8 +123,9 @@ footer {
 /*Media Query - Tablets*/
 
 @media only screen and (max-width: 768px) {
+
     #container {
-        height: 1050px;
+        height: 1200px;
     }
 
     .heading {
@@ -168,7 +169,7 @@ footer {
 
 @media only screen and (max-width: 576px) {
     #container {
-        height: 1050px;
+        height: 1200px;
     }
 
     .headingText {
