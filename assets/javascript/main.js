@@ -76,4 +76,23 @@ function testForChar(char) {  //Returns "city", "zip", or "Invalid".
 
 }; //end function
 
+
+  //Write values to table.
+  var numItems = 0;
+    for (var i=0; i< numItems; i++) {  //numItems will come from the api return data
+     $(".table").append(
+      "<tr class ='tableRow'>" + 
+        "<td id='nameColId'>" + /*get data from api */  + "</td>" + 
+        "<td id='addressColId'>" + /*get data from api */ + "</td>" +
+        "<td id='phoneColId'>" + /*get data from api */ + "</td>" + 
+     "</tr>");
+    } // end for loop
+
+
+
+//Dynamic date function
+  var today = new Date();
+  document.getElementById('year').textContent = today.getFullYear();
+
+
 }); //end document ready
