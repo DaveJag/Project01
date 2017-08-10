@@ -1,98 +1,125 @@
 $(document).ready(function() {
+    
+    var myLocation = "";
+    var location = '';
+    var locations = [];
+    var mapsAPIkey = "AIzaSyBj9Al5NrRwRUiUF6pZfZyGMde4WK0ehBo";
+    var yelpAPIkey = "sdLIuUoLXJ1foqbrvm9DJYuEmJQ28kBPkEjmp5bx4wBjztmgI-rl-IM_6bncvdCqLFnBF-CajWNwW8dpCgDtI7tTUC_Wuyvr-g6i1574oHE27GjGoiW_Z_kZ-BCBWXYx";
+    var token = yelpAPIkey;
+    var locationName = [];
+
 
     //Get the HTML input element for the autocomplete search box.
-    var input=document.getElementById('pac-input');
+    var input = document.getElementById('pac-input');
     var options = {
-        /*types: ['establishment'], */
+        types: ['(cities)'], 
         componentRestrictions: {country: ['us', 'ca']} //restricts search to United States & Canada
     };
-
-    //Create the autocomplete object.
-    var autocomplete=new google.maps.places.Autocomplete(input,options);
-
+    
+    //Create the input with autocomplete object.
+    var autocomplete = new google.maps.places.Autocomplete(input,options);
+    
+    //Event listener for Submit button.
     $("#searchButton").on("click", function(){
-    console.log("button clicked");
 
+        //Get user-selected input from the autocomplete input field.
+        myLocation = $("#pac-input").val().trim();
+   
+        //Get the radius value and convert it to meters.
+        var r = document.getElementById("radiusSelection");
+        var radMiles = r.options[r.selectedIndex].value;
+        var radMeters = radMiles * 1609.34 //meters-per-mile;
+        radMeters = parseFloat(radMeters.toFixed(2));
+        
+        //Bobby's API call to Google Places
+        var apiKey = "AIzaSyDYrSAKgq2_eSpoA_BRomMErBFF2nZL4JA"; <!-- Google zplaces api key -->
+        var queryURL = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + myLocation + "&radius=" + radMeters + "&strictbounds&key=" + apiKey;
 
-   //This is the original input field below.
-    var searchString = $("#cityZipInput").val().trim();
-    console.log("searchString is " + searchString);
-
-    //Get the radius value and convert to meters
-    var e = document.getElementById("radiusSelection");
-    var radMiles = e.options[e.selectedIndex].value;
-    var radMeters = radMiles * 1609.34;
-    radMeters = parseFloat(radMeters.toFixed(2));
-    //var strUser = e.options[e.selectedIndex].text;
-    console.log("selected radius is " + radMeters + " meters");
-    //Test to see if input is a city name or a zip code.
-    var firstChar = searchString.charAt(0); //gets first character of search string
-    result = testForChar(firstChar);
-    if (result === "city") {
-        console.log("Input is a city name.");
-        $("#statusMsg").text("You entered a city Name");
-    } else if (result === "zip") {
-        console.log("Input is a zip code.");
-        $("#statusMsg").text("You entered a zip code.");
-
-      } else { //invalid character 
-          console.log ("invalid character.");
-          $("#statusMsg").text("Enter a city name or zip code.");
-        }
-
-    var apiKey = "AIzaSyDYrSAKgq2_eSpoA_BRomMErBFF2nZL4JA"; <!-- google places api key -->
-    var queryURL = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + searchString + "&radius=" + radMeters + "&strictbounds&key=" + apiKey;
-
-
-    // Create an AJAX call for the specific button being clicked
+        // Create an AJAX call for the specific button being clicked
         $.ajax({
-          url: queryURL,
-          method: "GET"
+            url: queryURL,
+            method: "GET"
         }).done(function(response) {
-           for (var i=0; i<response.predictions.length; i++) {
-           console.log("response.predictions = " + response.predictions[i].description);
-       } // end for
-        }) // end ajax call
-    }); // end on click
+            for (var i=0; i<response.predictions.length; i++) {
+            console.log("response.predictions = " + response.predictions[i].description);
+          } // end for loop
+        }); // end ajax call
 
-function initialize() {
-  //Create the autocomplete object.
-  autocomplete = new google.maps.places.Autocomplete(
-        /** @type {HTMLInputElement} */ (document.getElementById('autocomplete')),
-      { types: ['geocode']});
-}
+        resetLocationName();
 
-function testForChar(char) {  //Returns "city", "zip", or "Invalid".
-  if (((char > '@') && (char < '[')) || ((char > '`') && (char<'{'))) { 
-    return "city"; // It is an english alphabetical character  
-  
-  } else if ((char > '/' ) && (char < ':')) {
-      return "zip"; //character is a number 0-9
+        $.ajax({
+            url: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=coffee&location=" + myLocation,
+            success: function(data, status) {
+            //$(".api-results").append("<p>This is the closest Coffee Shop to you: " + data.businesses[0].name + ".</p><p>Enjoy!</p>");
+            // console.log(data.businesses[0].location);
+                for (var i = 0; i < data.businesses.length - 10; i++) {
+                    location = (data.businesses[i].location.city);
+                    locationName.push(data.businesses[0].name);
+                    location = location.replace(" ", "+");
+                    resetLocations();
+                   
+                    //The function previously known as "functionTwo"
 
-    }  else {
-         //invalid character
-        return "invalid";
+                    $.ajax({
+                        url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=" + mapsAPIkey,
+                        success: function(response) {
+                            locations.push(response.results[0]);
+                            writeToTable(locations);
+
+                        // The function previously known as "functionThree" 
+                            var map = new google.maps.Map(document.getElementById('googleMap'), {
+                            zoom: 12,
+                            center: locations[0].geometry.location
+                            });
+                            for (var j = 0; j < locations.length; j++) {
+                                var marker = new google.maps.Marker({
+                                position: locations[j].geometry.location, // TypeError: Cannot read property 'geometry' of undefined.
+                                map: map,
+                                title: locationName[j] + " " + locations[j].formatted_address
+                                }); // end google.maps.Marker
+                            } //end for loop
+                        } // end function(response)
+                  }); // end ajax call        
+
+                } // end for loop
+            }, // end function (data, status)
+                beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer ' + token); }
+        }); // end ajax call
+    }); // end on click event
+
+    //Write values to table.
+    function writeToTable(locations) {
+        for (var i=0; i<locations.length; i++) {
+            $(".table").append(
+              "<tr class ='tableRow'>" + 
+              "<td id='nameColId'>" + locations[i] + "</td>" + 
+              "<td id='addressColId'>" + /*get data from api */ + "</td>" +
+              "<td id='phoneColId'>" + /*get data from api */ + "</td>" + 
+             "</tr>");
+        }   // end for loop
+    } // end function writeToTable
+
+
+    function resetLocations(){
+            locations = [];    
+    }
+    
+
+    function resetLocationName(){
+        locationName = [];
     }
 
-}; //end function
 
+    function initialize() {
+    //Create the autocomplete object.
+        autocomplete = new google.maps.places.Autocomplete(
+        /** @type {HTMLInputElement} */ (document.getElementById('autocomplete')),
+      { types: ['geocode']});
+    }
+  
 
-  //Write values to table.
-  var numItems = 0;
-    for (var i=0; i< numItems; i++) {  //numItems will come from the api return data
-     $(".table").append(
-      "<tr class ='tableRow'>" + 
-        "<td id='nameColId'>" + /*get data from api */  + "</td>" + 
-        "<td id='addressColId'>" + /*get data from api */ + "</td>" +
-        "<td id='phoneColId'>" + /*get data from api */ + "</td>" + 
-     "</tr>");
-    } // end for loop
-
-
-
-//Dynamic date function
-  var today = new Date();
-  document.getElementById('year').textContent = today.getFullYear();
-
-
+    //Dynamic date data
+    var today = new Date();
+    document.getElementById('year').textContent = today.getFullYear();
+ 
 }); //end document ready

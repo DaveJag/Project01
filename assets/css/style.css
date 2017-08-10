@@ -95,6 +95,10 @@ select {
     margin-left: 2px;
 }
 
+#googleMap {
+   height: 300px;
+}
+
 table {
     margin: 0 auto;
     background-color: #fff;
