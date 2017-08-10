@@ -105,6 +105,11 @@ table {
     color: #3e170c;
 }
 
+.results {
+    height: 250px;
+    overflow: scroll;
+}
+
 td,
 th {
     width: 320px;

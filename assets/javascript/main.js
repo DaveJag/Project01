@@ -92,7 +92,7 @@ $(document).ready(function() {
         for (var i=0; i<locations.length; i++) {
             $(".table").append(
               "<tr class ='tableRow'>" + 
-              "<td id='nameColId'>" + locations[i] + "</td>" + 
+              "<td id='nameColId'>" + locations[i].formatted_address + "</td>" + 
               "<td id='addressColId'>" + /*get data from api */ + "</td>" +
               "<td id='phoneColId'>" + /*get data from api */ + "</td>" + 
              "</tr>");
@@ -110,13 +110,6 @@ $(document).ready(function() {
     }
 
 
-    function initialize() {
-    //Create the autocomplete object.
-        autocomplete = new google.maps.places.Autocomplete(
-        /** @type {HTMLInputElement} */ (document.getElementById('autocomplete')),
-      { types: ['geocode']});
-    }
-  
 
     //Dynamic date data
     var today = new Date();
